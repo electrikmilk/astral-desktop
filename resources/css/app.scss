@@ -1,0 +1,28 @@
+@import "fonts";
+@import "ui";
+@import "root";
+@import "fx";
+@import "util";
+
+a {
+    color: var(--accent-color);
+}
+
+.view {
+    opacity: 0;
+}
+
+.blobs-container {
+    position: fixed;
+    z-index: -1;
+}
+
+.blob {
+    position: fixed;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    filter: blur(100rem);
+    box-shadow: 0 .1rem 1rem rgba(50, 50, 50, .5);
+    opacity: 0;
+}

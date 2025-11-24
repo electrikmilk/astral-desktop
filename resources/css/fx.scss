@@ -1,0 +1,155 @@
+.gradient-wave {
+    background: linear-gradient(270deg,
+        #09dddd,
+        #00a0ff,
+        #c50cfb,
+        #c50cfb,
+        #00a0ff,
+        #09dddd
+    );
+    background-size: 600% 600%;
+    animation: wave 5s ease-in-out infinite;
+    filter: glow(50%);
+}
+
+@keyframes wave {
+    0% {
+        background-position-x: 120%;
+    }
+    100% {
+        background-position-x: 0;
+    }
+}
+
+.gradient-shadow {
+    animation: colorShadow 5s ease-in-out forwards infinite;
+}
+
+@keyframes colorShadow {
+    0% {
+        box-shadow: 0 0 1rem #00a0ff90
+    }
+    50% {
+        box-shadow: 0 0 1rem #c50cfb90
+    }
+    100% {
+        box-shadow: 0 0 1rem #00a0ff90
+    }
+}
+
+.shine:hover {
+    animation: shine .5s ease-in-out forwards;
+}
+
+@media (prefers-color-scheme: dark) {
+    .shine:hover {
+        animation: shineDark .5s ease-in-out forwards !important;
+    }
+}
+
+@keyframes shine {
+    0% {
+        filter: contrast(100%);
+    }
+    50% {
+        filter: contrast(150%);
+    }
+    100% {
+        filter: contrast(100%);
+    }
+}
+
+@keyframes shineDark {
+    0% {
+        filter: brightness(100%);
+    }
+    50% {
+        filter: brightness(120%);
+    }
+    100% {
+        filter: brightness(100%);
+    }
+}
+
+.fade {
+    animation: fade forwards ease-in .3s;
+}
+
+.shake {
+    animation: shake forwards cubic-bezier(.11, .63, .82, .7);
+}
+
+.fade-out {
+    animation: fadeOut forwards ease-in .3s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    25% {
+        transform: translateX(3%);
+    }
+    50% {
+        transform: translateX(-3%);
+    }
+    75% {
+        transform: translateX(3%);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes slam {
+    0% {
+        opacity: 0;
+        transform: scale(0.1) translateY(200%);
+    }
+    50% {
+        transform: scale(0.5) translateY(-200%);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.raises {
+    transition: .5s all;
+    display: inline-block;
+    padding: .3rem .5rem 0 .5rem;
+
+    &:not(.surface) {
+        background-color: transparent;
+        border: .1rem solid transparent;
+    }
+
+    &:hover {
+        @extend .surface;
+    }
+
+    &:active {
+        @extend .embossed;
+    }
+}

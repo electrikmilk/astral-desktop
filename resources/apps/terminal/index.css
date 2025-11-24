@@ -1,0 +1,15 @@
+.tty {
+    background: #222222;
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tty canvas {
+    border-radius: 5px;
+    background: #121212;
+    border: 1px solid #222222;
+    box-shadow: 0 2px 5px #222222;
+}

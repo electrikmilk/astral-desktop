@@ -1,0 +1,127 @@
+@import "panel";
+
+.surface {
+    backdrop-filter: blur(50px);
+    background-color: var(--surface-bg);
+    border-width: .1rem;
+    border-style: solid;
+    border-color: var(--surface-border-color);
+    transition: .5s all;
+
+    &:not(:disabled,.disabled):hover {
+        filter: brightness(105%);
+        transition: .5s all;
+    }
+
+    @extend .rounded, .shadow
+}
+
+button, select {
+    font-weight: 600;
+}
+
+button, input, select, textarea {
+    padding: .5rem 1rem;
+    transition: .3s all;
+    z-index: 1;
+    box-shadow: var(--shadow);
+
+    @extend .surface;
+
+    &:not(:disabled) {
+        button {
+            cursor: pointer;
+
+            @extend .shine;
+        }
+
+        &:active {
+            box-shadow: inset 0 0.1rem 1rem rgba(0, 0, 0, .3);
+        }
+
+        &:focus {
+            outline: .1rem var(--accent-color);
+            border: .1rem solid rgba(0, 0, 0, .1);
+            box-shadow: 0 0 0 .1rem var(--accent-color)
+        }
+    }
+}
+
+button.primary {
+    color: #ffffff;
+    text-shadow: 0 .1rem 1rem rgba(255, 255, 255, .8);
+    background: rgb(216, 138, 255);
+    border-color: rgb(200, 108, 246) rgb(185, 51, 253) rgb(185, 51, 253) rgb(166, 34, 232) !important;
+    background: linear-gradient(0deg, rgb(210, 119, 255) 1%, rgba(169, 0, 255, 1) 55%, rgb(208, 117, 255) 99%) !important;
+}
+
+.progress-bar {
+    margin-top: 1rem;
+
+    height: 1rem;
+    width: 10rem;
+    overflow: hidden;
+
+    @extend .surface, .gradient-shadow
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-color: var(--surface-border-color);
+
+    @extend .gradient-wave
+}
+
+.indicator {
+    display: inline-block;
+    width: .7rem;
+    height: .7rem;
+    opacity: .5;
+    transition: .3s all;
+
+    @extend .surface, .circle, .embossed;
+}
+
+.indicator.success {
+    opacity: 1;
+    background: radial-gradient(circle, var(--success-color) 0%, darkgreen 100%);
+    box-shadow: 0 .1rem 1rem var(--success-color) !important;
+    filter: brightness(50%);
+
+    animation: glimmer forwards ease-in-out 2s infinite;
+}
+
+@keyframes glimmer {
+    0% {
+        box-shadow: 0 .1rem 1rem var(--success-color) !important;
+        filter: brightness(80%);
+    }
+    50% {
+        box-shadow: 0 .1rem 5rem var(--success-color) !important;
+        filter: brightness(110%);
+    }
+    100% {
+        box-shadow: 0 .1rem 1rem var(--success-color) !important;
+        filter: brightness(80%);
+    }
+}
+
+.popup-list {
+    position: absolute;
+    min-width: 12rem;
+    max-height: 50rem;
+    padding: 1rem .3rem;
+    z-index: 999;
+
+    @extend .surface, .scrollable-y
+}
+
+.popup-list-option {
+    display: block !important;
+    user-select: none;
+    color: inherit;
+    padding: .5rem !important;
+    transition: .3s all;
+
+    @extend .raises, .font-demi
+}

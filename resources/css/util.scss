@@ -1,0 +1,66 @@
+.fixed-center {
+    position: fixed;
+    inset: 0;
+    text-align: center;
+    display: flex;
+    place-content: center;
+    place-items: center;
+}
+
+.flex-center {
+    display: flex;
+    place-content: center;
+    place-items: center;
+}
+
+.scrollable {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.scrollable-x {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.scrollable-y {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.shadow {
+    box-shadow: var(--shadow);
+}
+
+.embossed {
+    transition: .3s all;
+    box-shadow: var(--inset-shadow);
+}
+
+.margin {
+    margin: .5rem;
+}
+
+.m-1 {
+    margin: 1rem;
+}
+
+.padded {
+    padding: .5rem
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+.rounded {
+    border-radius: var(--rounded-radius);
+}
+
+.circle {
+    border-radius: 50%;
+}

@@ -1,0 +1,53 @@
+/* Application Panels */
+
+.panel {
+    position: fixed;
+    opacity: 0;
+    box-shadow: var(--window-shadow);
+    transition: none !important;
+
+    @extend .surface, .fade
+}
+
+.panel .panel-title {
+    user-select: none;
+    padding: .5rem .7rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel .panel-frame {
+    margin: 0 .5rem .5rem;
+    overflow: hidden;
+    border-radius: var(--rounded-radius);
+    width: 640px;
+    height: 480px;
+    box-shadow: var(--shadow);
+    border: .1rem solid;
+    border-color: var(--surface-border-color)
+}
+
+.panel-close-btn {
+    text-shadow: 0 .1rem .5rem rgba(103, 9, 49, 0.5);
+    background: rgb(168, 11, 80);
+    background: linear-gradient(180deg, rgb(239, 155, 188) 0%, rgba(255, 0, 112, 0.7) 50%, rgb(246, 120, 170) 100%);
+    padding: .40rem .45rem;
+    border: 1px solid #ed6fa3;
+    line-height: .7rem;
+    font-size: 1.2rem;
+    color: #fafafa;
+    font-weight: 600;
+    border-radius: 50%;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: var(--shadow);
+    transition: .3s all;
+}
+
+.panel-close-btn:hover {
+    filter: brightness(110%);
+}
+
+.panel-close-btn:active {
+    filter: brightness(90%);
+}
