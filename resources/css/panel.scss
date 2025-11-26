@@ -44,7 +44,8 @@
     cursor: pointer;
     user-select: none;
     box-shadow: var(--shadow);
-    transition: .3s all;
+
+    @extend .transition-in;
 }
 
 .panel-close-btn:hover {

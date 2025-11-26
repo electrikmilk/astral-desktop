@@ -38,7 +38,7 @@
 
 .embossed {
     box-shadow: var(--inset-shadow);
-    @extend .transition;
+    @extend .transition-in;
 }
 
 .margin {
@@ -65,10 +65,14 @@
     border-radius: 50%;
 }
 
-.transition {
-    transition: .3s all;
+.transition-in {
+    transition: .3s all ease-in;
 }
 
-.transition-long {
-    transition: .5s all;
+.transition-out {
+    transition: .3s all ease-in-out;
+}
+
+.transition-in-long {
+    transition: .5s all ease-in;
 }
