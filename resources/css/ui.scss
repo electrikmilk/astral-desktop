@@ -10,6 +10,9 @@
 
     &:not(:disabled,.disabled):hover {
         filter: brightness(105%);
+    }
+
+    &:not(:disabled,.disabled):hover, &:not(:disabled,.disabled):active, &:not(:disabled,.disabled):focus {
         transition: .5s all;
     }
 
