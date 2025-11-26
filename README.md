@@ -4,6 +4,12 @@
 
 Astral is a web desktop built on top of Laravel with a fluid UI that allows you to project into a remote machine via a web browser.
 
+<img alt="Astral Desktop" src="https://github.com/user-attachments/assets/a83c0ba9-c416-4061-97c8-c8f59046d317" />
+
+Astral also shines beautifully in the dark.
+
+<img alt="Astral Desktop Dark Mode" src="https://github.com/user-attachments/assets/1fa66f73-577c-4e24-b86e-b2c1eb973fc2" />
+
 **📣 WIP 📣**
 
 Everything you see here is subject to change, as I not only technically started this project a year or two ago, but there are many ways I would like to improve the project. I'm not sure if the desktop metaphor always works or is preferred either. It would also be nice if it were more responsive and could be used on a mobile web browser; basically, it should eventually be a PWA.
@@ -29,56 +35,6 @@ It is my understanding that a web desktop is a UI loaded into your web browser f
 ## Performance Warning
 
 Currently, Astral has a background UI effect that randomly pops in and out of random colored blurred ellipses that randomly fluctuate their size, color, and blur. I am concerned this may have varied performance, especially as the system applications scale. So if this does give you any issues, know that I am planning to implement a way to toggle this on and off, as well as remember to keep it off or on when Astral starts.
-
-## Current Usage
-
-Astral is a remote reactive system by design. Its containers, UI elements, etc., are all designed to react to remote system events and transform as data on the remote system changes.
-
-It first tries to discover if it can connect to an Astral backend installed on the remote system, all verified by CSRF tokens.
-
-<img width="1409" height="743" alt="Screenshot 2025-11-24 at 14 28 30" src="https://github.com/user-attachments/assets/5416d640-e459-4919-b767-cc55a148b8a4" />
-
-Once it does, the UI reacts and changes the background and icon for the remote, displaying the connection status it has received.
-
-Colorful blobs now fill the background due to the connection status. If there is an error connecting, they turn red.
-
-<img width="1407" height="741" alt="Screenshot 2025-11-24 at 14 28 11 1" src="https://github.com/user-attachments/assets/72d9f0c8-5250-4c8e-8e9b-c6faed309ecc" />
-
-Astral has a beautiful, but also fluid UI design that changes in reaction to context.
-
-Astral is composed of views that consist of elements that can be modeled based on the value of a store, which holds information about the remote system, so reacting to the system not responding with OK, especially in the "Astral way", it is trivial to display the disconnected state or any other state change.
-
-If the system is unable to ping the remote backend, it will clear the desktop view and transition to a health check failed screen, while still preserving open windowed applications. Once it can connect to the backend again, it will return to the connection screen.
-
-<img width="1414" height="742" alt="Screenshot 2025-11-24 at 15 21 31" src="https://github.com/user-attachments/assets/4793f64d-1526-40d3-a1b8-d069aa303711" />
-
-## Desktop
-
-From there, we are greeted with the Astral Desktop, which currently only includes a system menu, clock, and app launcher. The default "wallpaper" is some colored blobs; this will be configurable in the future.
-
-<img width="1416" height="743" alt="Screenshot 2025-11-24 at 14 37 20" src="https://github.com/user-attachments/assets/3d0b12ba-dcb1-42cb-869d-a8d9e481719e" />
-
-Currently, the system menu allows you to exit the desktop.
-
-<img width="330" height="227" alt="Screenshot 2025-11-24 at 14 28 59" src="https://github.com/user-attachments/assets/f0da6696-e87b-492c-adf3-dbdfbb31a107" />
-
-The terminal application shows how windowing would work:
-
-<img width="1415" height="745" alt="Screenshot 2025-11-24 at 14 28 45" src="https://github.com/user-attachments/assets/a83c0ba9-c416-4061-97c8-c8f59046d317" />
-
-The terminal application shows we have pass-through to the remote system, and applications can either have HTML or HTML canvas graphics for their application.
-
-Running `ls`:
-
-<img width="665" height="549" alt="Screenshot 2025-11-24 at 14 29 20" src="https://github.com/user-attachments/assets/0e4ac84f-ae26-4d17-b5e5-a966891c0a10" />
-
-## Dark Mode
-
-Astral also shines beautifully in the dark.
-
-<img width="1127" height="742" alt="Screenshot 2025-11-25 at 23 24 27 1" src="https://github.com/user-attachments/assets/1e35de98-4294-4c79-9b53-03590174bbe7" />
-
-<img width="1127" height="742" alt="Screenshot 2025-11-25 at 23 25 45" src="https://github.com/user-attachments/assets/1fa66f73-577c-4e24-b86e-b2c1eb973fc2" />
 
 ---
 
