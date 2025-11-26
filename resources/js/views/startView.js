@@ -89,7 +89,7 @@ export default new View((view, controller) => {
                                 style: 'margin-left: .5rem',
                             }),
                         ),
-                        html('p', {style: 'opacity: 0.5'}, !emptyInfo ? text(`Astral Installed - ${info.system} (${info.arch})`) : text('Astral not appear to be installed.')),
+                        html('p', {style: 'opacity: 0.7'}, !emptyInfo ? text(`Astral Installed - ${info.system} (${info.arch})`) : text('Astral not appear to be installed.')),
                     );
                 }),
                 startButton,
