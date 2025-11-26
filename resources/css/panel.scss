@@ -4,7 +4,10 @@
     position: fixed;
     opacity: 0;
     box-shadow: var(--window-shadow);
-    transition: none !important;
+
+    &:active {
+        transition: none !important;
+    }
 
     @extend .surface, .fade
 }
