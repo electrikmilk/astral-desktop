@@ -2,9 +2,11 @@
 
 # Astral
 
-Astral is a web desktop built on a Vue/Laravel stack that allows you to project into a remote machine via web browser.
+Astral is a web desktop built on top of Laravel with a fluid UI that allows you to project into a remote machine via a web browser.
 
 **📣 WIP 📣**
+
+Everything you see here is subject to change, as I not only technically started this project a year or two ago, but there are many ways I would like to improve the project. I'm not sure if the desktop metaphor always works or is preferred either. It would also be nice if it were more responsive and could be used on a mobile web browser; basically, it should eventually be a PWA.
 
 ## Current Use Case
 
