@@ -28,8 +28,19 @@ export async function clearBlobs() {
     await sleep(1);
 }
 
-export function rainbowBlobs() {
-    new ColorBlobGroup('#e41081', '#e4e010', '#98dd0e', '#0edd95', '#09dddd', '#00d9ff', '#00a0ff', '#4924b9', '#6724b9', '#a900ff');
+export function desktopBlobs() {
+    new ColorBlobGroup(
+        '#00f7ff',
+        '#01daff',
+        '#ff00f2',
+        '#ff00a6',
+        '#ffc600',
+        'orange',
+        '#9400e2',
+        '#8a00fe',
+        '#ff72e9',
+        '#f456ec',
+    );
 }
 
 export class ColorBlobGroup {

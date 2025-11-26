@@ -5,7 +5,7 @@ import notDoingSoHotView from './healthCheckFailedView.js';
 import {Store} from '../support/store.js';
 import remote from '../stores/remote.js';
 
-import {clearBlobs, ColorBlobGroup, rainbowBlobs} from '../support/blobs.js';
+import {clearBlobs, ColorBlobGroup, desktopBlobs} from '../support/blobs.js';
 import {html, model, text} from '../support/render.js';
 import {empty} from '../support/util.js';
 
@@ -19,16 +19,20 @@ export let remoteOK = new Store(false);
 
 export default new View((view, controller) => {
     const welcomeBlobs = new ColorBlobGroup(
-        'radial-gradient(circle, rgba(245,253,45,1) 0%, rgba(195,173,34,1) 100%)',
-        'radial-gradient(circle, rgba(0,160,255,1) 0%, rgba(27,138,204,1) 100%)',
-        'radial-gradient(circle, orange 0%, darkorange 100%)',
-        'radial-gradient(circle, rgba(169,0,255,1) 0%, rgba(131,23,186,1) 100%)',
+        '#fffe0b',
+        '#ffcf39',
+        '#2ea6f3',
+        '#198af3',
+        '#f19a00',
+        '#d98602',
+        '#a24cff',
+        '#a451f6',
     );
     const startButton = html('button', {
             onclick: () => {
                 startButton.disabled = true;
                 welcomeBlobs.clear();
-                rainbowBlobs();
+                desktopBlobs();
                 controller.load(desktopView);
             },
             disabled: true,
@@ -122,10 +126,10 @@ async function checkRemoteHealth() {
 
 async function remoteConnectionErrorScreen() {
     if (views.currentView) {
-        await clearBlobs();
         await views.clear();
     }
 
+    await clearBlobs();
     new ColorBlobGroup('darkred', 'maroon');
 
     setTimeout(() => {
