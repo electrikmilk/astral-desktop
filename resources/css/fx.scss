@@ -1,3 +1,5 @@
+@import "util";
+
 .gradient-wave {
     background: linear-gradient(270deg,
         #09dddd,
@@ -136,7 +138,6 @@
 }
 
 .raises {
-    transition: .5s all;
     display: inline-block;
     padding: .3rem .5rem 0 .5rem;
 
@@ -144,6 +145,8 @@
         background-color: transparent;
         border: .1rem solid transparent;
     }
+
+    @extend .transition;
 
     &:hover {
         @extend .surface;

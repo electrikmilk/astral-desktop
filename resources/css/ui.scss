@@ -1,4 +1,5 @@
 @import "panel";
+@import "util";
 
 .surface {
     backdrop-filter: blur(50px);
@@ -6,17 +7,16 @@
     border-width: .1rem;
     border-style: solid;
     border-color: var(--surface-border-color);
-    transition: .5s all;
 
     &:not(:disabled,.disabled):hover {
         filter: brightness(105%);
     }
 
     &:not(:disabled,.disabled):hover, &:not(:disabled,.disabled):active, &:not(:disabled,.disabled):focus {
-        transition: .5s all;
+        @extend .transition-long;
     }
 
-    @extend .rounded, .shadow
+    @extend .rounded, .shadow, .transition-long
 }
 
 button, select {
@@ -25,7 +25,6 @@ button, select {
 
 button, input, select, textarea {
     padding: .5rem 1rem;
-    transition: .3s all;
     z-index: 1;
     box-shadow: var(--shadow);
 
@@ -80,7 +79,6 @@ button.primary {
     width: .7rem;
     height: .7rem;
     opacity: .5;
-    transition: .3s all;
 
     @extend .surface, .circle, .embossed;
 }
@@ -124,7 +122,6 @@ button.primary {
     user-select: none;
     color: inherit;
     padding: .5rem !important;
-    transition: .3s all;
 
-    @extend .raises, .font-demi
+    @extend .raises, .font-demi, .transition
 }
