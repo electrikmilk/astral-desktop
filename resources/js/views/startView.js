@@ -41,7 +41,11 @@ export default new View((view, controller) => {
     );
 
     view.onLoad(async () => {
-        remote.model(info => startButton.disabled = !remoteOK.value || empty(info));
+        remote.model(info => {
+            const badRemoteHealth = !remoteOK.value || empty(info);
+            startButton.disabled = badRemoteHealth;
+            startButton.className = !badRemoteHealth ? 'primary' : null;
+        });
 
         await new Promise((resolve) => {
             setTimeout(async () => {
