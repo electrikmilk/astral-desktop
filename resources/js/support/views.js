@@ -31,7 +31,7 @@ export class View {
 
     dissolve() {
         return new Promise((resolve) => {
-            this.element.classList.remove('fade');
+            this.element.classList.remove('fade-in');
             this.element.classList.add('fade-out');
             setTimeout(() => {
                 resolve();
@@ -64,7 +64,7 @@ export class ViewController {
 
         // Give images a sec to load in, etc.
         setTimeout(() => {
-            renderedView.classList.add('fade');
+            renderedView.classList.add('fade-in');
         }, 500);
     }
 

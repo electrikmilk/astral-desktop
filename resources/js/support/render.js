@@ -41,24 +41,24 @@ export function model(store, callback) {
 
 // Transition model states.
 async function transitionRenderState(newValue, element, render) {
-    if (!element.classList.contains('fade-out')) {
-        element.classList.add('fade-out');
+    if (!element.classList.contains('disappear')) {
+        element.classList.add('disappear');
         await sleep(.3);
     }
 
     element.innerHTML = '';
 
     element.style.opacity = 0;
-    if (element.classList.contains('fade-out')) {
-        element.classList.remove('fade-out');
+    if (element.classList.contains('disappear')) {
+        element.classList.remove('disappear');
     }
 
     element.append(render);
 
-    element.classList.add('fade');
+    element.classList.add('appear');
     await sleep(.3);
     element.style.opacity = 1;
-    element.classList.remove('fade');
+    element.classList.remove('appear');
 }
 
 /* CSS */

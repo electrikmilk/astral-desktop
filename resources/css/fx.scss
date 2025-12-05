@@ -71,24 +71,54 @@
     }
 }
 
-.fade {
-    animation: fade forwards ease-in .3s;
-}
-
 .shake {
     animation: shake forwards cubic-bezier(.11, .63, .82, .7);
+}
+
+.fade-in {
+    animation: fade-in forwards ease-in .3s;
 }
 
 .fade-out {
     animation: fadeOut forwards ease-in .3s;
 }
 
-@keyframes fade {
+.appear {
+    animation: appear forwards ease-in-out .3s;
+}
+
+.disappear {
+    animation: disappar forwards ease-out .3s;
+}
+
+@keyframes fade-in {
     from {
         opacity: 0;
     }
     to {
         opacity: 1;
+    }
+}
+
+@keyframes appear {
+    0% {
+        filter: blur(.3rem);
+        opacity: 0;
+    }
+    100% {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    0% {
+        filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        filter: blur(.3rem);
+        opacity: 0;
     }
 }
 

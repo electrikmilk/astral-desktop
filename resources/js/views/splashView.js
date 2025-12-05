@@ -14,7 +14,7 @@ export default new View((view, controller) => {
     });
 
     return html('div', {className: 'fixed-center'},
-        html('div', {className: 'fade'},
+        html('div', {className: 'fade-in'},
             html('img', {src: appIcon, width: 256}),
         ),
     );
