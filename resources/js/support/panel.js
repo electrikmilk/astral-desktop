@@ -2,7 +2,7 @@ import {addInit} from '../init.js';
 import {html, text} from './render.js';
 
 let container;
-let windows = [];
+export let windows = [];
 
 addInit('panels', () => {
     if (!container) {
@@ -11,19 +11,20 @@ addInit('panels', () => {
     }
 });
 
-
 export class Panel {
     window;
     title = 'Application';
     icon;
     url;
     titleBar;
+    closeButton = true;
 
-    constructor(title, url, icon) {
+    constructor(title, url, icon, closeButton = true) {
         this.title = title;
         this.icon = icon;
         this.url = url;
         this.window = html('div', {className: 'panel'});
+        this.closeButton = closeButton;
 
         this.initTitleBar();
 
@@ -42,14 +43,17 @@ export class Panel {
                 html('img', {src: this.icon, width: 32}),
                 text(this.title),
             ),
-            html('div', {
+        );
+
+        if (this.closeButton) {
+            this.titleBar.append(html('div', {
                 className: 'panel-close-btn',
                 innerHTML: '&times;',
                 onclick: () => {
                     this.close();
                 },
-            }),
-        );
+            }));
+        }
 
         this.window.appendChild(this.titleBar);
     }
@@ -69,6 +73,7 @@ export class Panel {
 
     close() {
         this.window.remove();
+        windows.splice(windows.indexOf(this), 1);
         delete this;
     }
 }
