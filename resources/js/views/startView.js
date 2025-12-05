@@ -134,7 +134,7 @@ async function remoteConnectionErrorScreen() {
     }
 
     await clearBlobs();
-    new ColorBlobGroup('darkred', 'maroon');
+    new ColorBlobGroup('#bc005f', '#bc0751');
 
     setTimeout(() => {
         views.load(notDoingSoHotView);
