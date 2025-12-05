@@ -7,14 +7,26 @@ import {obj2CSS, sleep} from './util.js';
 /* HTML */
 
 // Render HTML.
-export function html(tag, attrs, ...elements) {
+export function html(tag, config, ...elements) {
     const element = document.createElement(tag);
     if (elements) {
         element.append(...elements);
     }
-    if (attrs) {
-        for (let key in attrs) {
-            element[key] = attrs[key];
+    if (config) {
+        for (let key in config) {
+            if (key in element) {
+                if (key === 'style' && typeof config[key] === 'object') {
+                    for (let key in config['style']) {
+                        element.style[key] = config['style'][key];
+                    }
+                    continue;
+                }
+                element[key] = config[key];
+            } else if (typeof config[key] === 'boolean') {
+                config[key] ? element.setAttribute(key, config[key]) : element.removeAttribute(key);
+            } else {
+                element.setAttribute(key, config[key]);
+            }
         }
     }
 
