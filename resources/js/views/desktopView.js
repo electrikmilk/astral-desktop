@@ -1,5 +1,5 @@
 import {View} from '../support/views.js';
-import {Panel} from '../support/panel.js';
+import {Panel, windows} from '../support/panel.js';
 
 import {html, model, text} from '../support/render.js';
 
@@ -12,6 +12,7 @@ import startView from './startView.js';
 import {renderComponent} from '../component.js';
 import {clearBlobs} from '../support/blobs.js';
 import {Store} from '../support/store.js';
+import {DialogPanel} from '../controls/dialog.js';
 
 const apps = [
     {
