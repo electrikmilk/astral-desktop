@@ -24,7 +24,14 @@ const apps = [
 
 function createTimestamp() {
     const now = new Date();
-    return now.toDateString() + ' ' + now.getHours() + ':' + now.getMinutes();
+
+    const timeUnits = [
+        now.getHours(),
+        now.getMinutes(),
+    ].map(u => u.toString()
+                .padStart(2, '0'));
+
+    return [now.toDateString(), timeUnits.join(':')].join(' ');
 }
 
 export default new View((view, controller) => {
