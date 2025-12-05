@@ -45,12 +45,14 @@ export class DialogPanel extends Panel {
         const okButton = html('button', {
                 onclick: () => this.okCallback(this),
                 className: this.warning ? 'danger' : 'primary',
+                autofocus: !this.cancelButton,
             },
             text(this.okLabel ?? (this.warning ? 'Proceed' : 'OK')),
         );
 
         const cancelButton = html('button', {
                 onclick: () => this.cancelCallback(this),
+                autofocus: this.cancelButton,
             },
             text(this.cancelLabel),
         );

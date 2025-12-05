@@ -21,19 +21,42 @@
     }
 }
 
-.gradient-shadow {
+.color-shadow {
     animation: colorShadow 5s ease-in-out forwards infinite;
 }
 
 @keyframes colorShadow {
     0% {
-        box-shadow: 0 0 1rem #00a0ff90
+        box-shadow: .3rem .1rem 1rem #00a0ff90
     }
     50% {
-        box-shadow: 0 0 1rem #c50cfb90
+        box-shadow: .3rem .1rem 1rem #c50cfb90
     }
     100% {
-        box-shadow: 0 0 1rem #00a0ff90
+        box-shadow: .3rem .1rem 1rem #ffdd0090
+    }
+}
+
+.throb {
+    animation: throb 3s ease-in-out forwards infinite;
+}
+
+@keyframes throb {
+    0% {
+        opacity: 1;
+        box-shadow: .3rem .1rem 1rem #00a0ff90
+    }
+    25% {
+        opacity: .7;
+        box-shadow: .3rem .1rem 1rem #c50cfb90
+    }
+    75% {
+        opacity: 1;
+        box-shadow: .3rem .1rem 1rem #ffdd0090
+    }
+    100% {
+        opacity: 1;
+        box-shadow: .3rem .1rem 1rem #00a0ff90
     }
 }
 

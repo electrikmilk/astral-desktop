@@ -20,6 +20,7 @@
 
 button, select {
     font-weight: 600;
+    @extend .shine;
 }
 
 button, input, select, textarea {
@@ -28,6 +29,10 @@ button, input, select, textarea {
     box-shadow: var(--shadow);
 
     @extend .surface;
+
+    &[type=color] {
+        padding: .1rem !important;
+    }
 
     &:not(:disabled) {
         button {
@@ -41,11 +46,14 @@ button, input, select, textarea {
         }
 
         &:focus {
-            outline: .1rem var(--accent-color);
             border: .1rem solid rgba(0, 0, 0, .1);
-            box-shadow: 0 0 0 .1rem var(--accent-color)
         }
     }
+}
+
+* :focus {
+    @extend .throb, .color-shadow;
+    outline: 1rem var(--accent-color) !important;
 }
 
 button.primary {
@@ -71,7 +79,7 @@ button.danger {
     width: 10rem;
     overflow: hidden;
 
-    @extend .surface, .gradient-shadow
+    @extend .surface, .color-shadow
 }
 
 .progress-bar-fill {
