@@ -1,5 +1,7 @@
 @extends('master')
 
+@section('title', 'Terminal')
+
 @section('head')
     @vite(['resources/apps/terminal/index.js', 'resources/apps/terminal/index.css'])
 @endsection
