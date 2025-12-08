@@ -34,7 +34,7 @@ It is my understanding that a web desktop is a UI loaded into your web browser f
 
 ## Performance Warning
 
-Currently, Astral has a background UI effect that randomly pops in and out of random colored blurred ellipses that randomly fluctuate their size, color, and blur. I am concerned this may have varied performance, especially as the system applications scale. So if this does give you any issues, know that I am planning to implement a way to toggle this on and off, as well as remember to keep it off or on when Astral starts.
+Currently, Astral has a background UI effect that randomly pops in and out of random colored blurred ellipses that randomly fluctuate their size, color, and blur. I am concerned this may have varied performance, especially as the system applications scale. So if this does give you any issues, know that I am planning to implement a way to toggle this off, reduce it or replace it with a background image.
 
 ---
 
