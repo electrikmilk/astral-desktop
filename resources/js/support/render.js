@@ -44,7 +44,7 @@ export function model(store, callback) {
     store.model((newValue) => {
         const newRender = callback(newValue);
         if (element.innerHTML === '' || element.innerHTML !== newRender.outerHTML) {
-            transitionRenderState(newValue, element, newRender);
+            transitionRenderState(element, newRender);
         }
     });
 
@@ -52,7 +52,7 @@ export function model(store, callback) {
 }
 
 // Transition model states.
-async function transitionRenderState(newValue, element, render) {
+async function transitionRenderState(element, render) {
     if (!element.classList.contains('disappear')) {
         element.classList.add('disappear');
         await sleep(.3);
