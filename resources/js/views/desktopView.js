@@ -10,9 +10,10 @@ import {PopupList} from '../controls/popupList.js';
 import start from '../../assets/start.wav';
 import startView from './startView.js';
 import {renderComponent} from '../component.js';
-import {clearBlobs} from '../support/blobs.js';
+import {clearBlobs, desktopBlobs} from '../support/blobs.js';
 import {Store} from '../support/store.js';
 import {DialogPanel} from '../controls/dialog.js';
+import desktopColors from '../stores/desktopColors.js';
 
 const apps = [
     {
@@ -122,6 +123,15 @@ export default new View((view, controller) => {
     setInterval(() => {
         clock.set(createTimestamp());
     }, 1000);
+
+    let initColors = 0;
+    desktopColors.model(() => {
+        if (initColors) {
+            clearBlobs();
+            desktopBlobs();
+        }
+        initColors++;
+    });
 
     return html('section', {},
         html('div', {

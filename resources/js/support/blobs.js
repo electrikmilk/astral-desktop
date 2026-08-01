@@ -7,6 +7,7 @@
 import {RNG} from './random.js';
 import {addInit} from '../init.js';
 import {sleep} from './util.js';
+import desktopColors from '../stores/desktopColors.js';
 
 let container;
 export let blobs = [];
@@ -25,22 +26,11 @@ export async function clearBlobs() {
     for (const blob of blobs) {
         await blob.clear();
     }
-    await sleep(1);
+    await sleep(0.5);
 }
 
 export function desktopBlobs() {
-    new ColorBlobGroup(
-        '#00f7ff',
-        '#01daff',
-        '#ff00f2',
-        '#ff00a6',
-        '#ffc600',
-        'orange',
-        '#9400e2',
-        '#8a00fe',
-        '#ff72e9',
-        '#f456ec',
-    );
+    new ColorBlobGroup(desktopColors);
 }
 
 export class ColorBlobGroup {
