@@ -4,12 +4,13 @@
     position: fixed;
     opacity: 0;
     box-shadow: var(--window-shadow);
+    transform: scale(0.5);
 
     &:active {
         transition: none !important;
     }
 
-    @extend .surface, .fade-in
+    @extend .surface, .appear-in
 }
 
 .panel .panel-title {
@@ -30,15 +31,16 @@
     border-color: var(--surface-border-color)
 }
 
-.panel-close-btn {
+.panel-btns {
+    display: flex;
+    gap: 0 0.3rem;
+}
+
+.panel-btn {
     text-shadow: 0 .1rem .5rem rgba(103, 9, 49, 0.5);
-    background: rgb(168, 11, 80);
-    background: linear-gradient(180deg, rgb(239, 155, 188) 0%, rgba(255, 0, 112, 0.7) 50%, rgb(246, 120, 170) 100%);
     padding: .40rem .45rem;
-    border: 1px solid #ed6fa3;
     line-height: .7rem;
     font-size: 1.2rem;
-    color: #fafafa;
     font-weight: 600;
     border-radius: 50%;
     cursor: pointer;
@@ -48,10 +50,31 @@
     @extend .transition-in;
 }
 
-.panel-close-btn:hover {
+.panel-btn:hover {
     filter: brightness(110%);
 }
 
-.panel-close-btn:active {
+.panel-btn:active {
     filter: brightness(90%);
+}
+
+.panel-mini-btn {
+    background: rgb(168 58 11);
+    background: linear-gradient(180deg, rgb(246 168 120) 0%, rgba(168, 58, 11, 0.7) 50%, rgb(246 168 120) 100%);
+    border: 1px solid #ec894b;
+    color: rgb(97 25 0);
+}
+
+.panel-close-btn {
+    background: rgb(168, 11, 80);
+    background: linear-gradient(180deg, rgb(239, 155, 188) 0%, rgba(255, 0, 112, 0.7) 50%, rgb(246, 120, 170) 100%);
+    border: 1px solid #ed6fa3;
+    color: rgb(131 0 57 / 0.7);
+}
+
+.panel-indicator {
+    position: absolute;
+    margin-left: 1.5rem;
+    line-height: 0;
+    margin-top: -0.5rem;
 }

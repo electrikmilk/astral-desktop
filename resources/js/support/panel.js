@@ -1,5 +1,6 @@
 import {addInit} from '../init.js';
 import {html, text} from './render.js';
+import {Store} from './store.js';
 
 let container;
 export let windows = [];
@@ -17,21 +18,37 @@ export class Panel {
     icon;
     url;
     titleBar;
+    minimizeButton = false;
     closeButton = true;
+    isOpen = new Store(true);
+    isMini = new Store(false);
 
-    constructor(title, url, icon, closeButton = true) {
+    constructor(title, url, icon, isOpenModel = null, isMiniModel = null) {
         this.title = title;
         this.icon = icon;
         this.url = url;
         this.window = html('div', {className: 'panel'});
-        this.closeButton = closeButton;
-
-        this.initTitleBar();
+        if (isOpenModel) {
+            this.isOpen = isOpenModel;
+        }
+        if (isMiniModel) {
+            this.isMini = isMiniModel;
+        }
 
         container.appendChild(this.window);
         windows.push(this);
 
         $(this.window).draggable().selectable().resizable();
+    }
+
+    withMinimizeButton() {
+        this.minimizeButton = true;
+        return this;
+    }
+
+    withoutCloseButton() {
+        this.closeButton = false;
+        return this;
     }
 
     initTitleBar() {
@@ -45,9 +62,21 @@ export class Panel {
             ),
         );
 
+        const titleBarButtons = html('div', {className: 'panel-btns'});
+
+        if (this.minimizeButton) {
+            titleBarButtons.append(html('div', {
+                className: 'panel-btn panel-mini-btn',
+                innerHTML: '&minus;',
+                onclick: () => {
+                    this.minimize();
+                },
+            }));
+        }
+
         if (this.closeButton) {
-            this.titleBar.append(html('div', {
-                className: 'panel-close-btn',
+            titleBarButtons.append(html('div', {
+                className: 'panel-btn panel-close-btn',
                 innerHTML: '&times;',
                 onclick: () => {
                     this.close();
@@ -55,12 +84,13 @@ export class Panel {
             }));
         }
 
+        this.titleBar.append(titleBarButtons);
+
         this.window.appendChild(this.titleBar);
     }
 
-
-    open() {
-        this.window.className = 'panel';
+    init() {
+        this.initTitleBar();
         this.window.append(html('div', {className: 'panel-frame'},
             html('iframe', {
                 src: this.url,
@@ -69,11 +99,30 @@ export class Panel {
                 frameBorder: '0',
             }),
         ));
+        this.isOpen.set(true);
+    }
+
+
+    open() {
+        this.window.classList.remove('fade-out');
+        this.window.classList.remove('disappear-out');
+        this.isOpen.set(true);
+        this.isMini.set(false);
+    }
+
+    minimize() {
+        this.window.classList.add('disappear-out');
+        this.isMini.set(true);
     }
 
     close() {
-        this.window.remove();
-        windows.splice(windows.indexOf(this), 1);
-        delete this;
+        this.isOpen.set(false);
+        this.isMini.set(false);
+        this.window.classList.add('fade-out');
+        setTimeout(() => {
+            this.window.remove();
+            windows.splice(windows.indexOf(this), 1);
+            delete this;
+        }, 400);
     }
 }

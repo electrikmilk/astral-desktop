@@ -114,6 +114,22 @@
     animation: disappar forwards ease-out .3s;
 }
 
+.appear-in {
+    animation: appearIn forwards ease-in .3s;
+}
+
+.disappear-out {
+    animation: disappearOut forwards ease-in .3s;
+}
+
+.scale-up {
+    animation: scaleUp forwards ease-in .3s;
+}
+
+.scale-down {
+    animation: scaleDown forwards ease-out .3s;
+}
+
 @keyframes fade-in {
     from {
         opacity: 0;
@@ -184,6 +200,46 @@
         opacity: 1;
     }
     to {
+        opacity: 0;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0) translateX(-50%);
+    }
+}
+
+@keyframes appearIn {
+    from {
+        transform: scale(0.5) translateY(25%);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0%);
+        opacity: 1;
+    }
+}
+
+@keyframes disappearOut {
+    from {
+        transform: scale(1) translateY(0%);
+        opacity: 1;
+    }
+    to {
+        transform: scale(0.5) translateY(50%);
         opacity: 0;
     }
 }

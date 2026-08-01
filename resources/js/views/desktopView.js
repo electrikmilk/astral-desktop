@@ -38,15 +38,25 @@ function createTimestamp() {
 export default new View((view, controller) => {
     let appList = [];
     for (const app of apps) {
-        appList.push(html('a', {
-                className: 'raises',
+        const appOpen = new Store(false);
+        const appMini = new Store(false);
+
+        appList.push(model(appMini, (minimized) => html('a', {
+                className: minimized ? 'raises surface' : 'raises',
                 onclick: () => {
-                    const window = new Panel(app.name, app.url, app.icon);
-                    window.open();
+                    const openWindow = windows.find((w) => w.title === app.name);
+                    if (!openWindow) {
+                        const window = new Panel(app.name, app.url, app.icon, appOpen, appMini).withMinimizeButton();
+                        window.init();
+                        return;
+                    }
+
+                    openWindow.open();
                 },
             },
             html('img', {src: app.icon, width: 64}),
-        ));
+            model(appOpen, (open) => html('div', {className: 'panel-indicator'}, open ? text('•') : text(''))),
+        )));
     }
 
     view.onLoad(() => {
