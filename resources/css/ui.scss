@@ -100,7 +100,7 @@ button.danger {
 
 .indicator.success {
     opacity: 1;
-    background: radial-gradient(circle, var(--success-color) 0%, darkgreen 100%);
+    background: radial-gradient(circle, var(--success-color) 0%, #06a11d 100%);
     box-shadow: 0 .1rem 1rem var(--success-color) !important;
     filter: brightness(50%);
 
