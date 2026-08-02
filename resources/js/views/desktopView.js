@@ -155,7 +155,7 @@ export default new View((view, controller) => {
             },
             homeButton,
             renderComponent(popupList),
-            model(clock, (timestamp) => html('div', text(timestamp))),
+            model(clock, (timestamp) => html('div', {}, text(timestamp))),
         ),
         html('div', {className: 'surface padded m-1', style: 'position:fixed;bottom:0;left:0;right:0'},
             ...appList,
