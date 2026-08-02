@@ -39,7 +39,6 @@ export class ColorBlobGroup {
     delay = 500;
 
     constructor(...colors) {
-        console.log('new blob group', colors);
         this.add(...colors);
     }
 
