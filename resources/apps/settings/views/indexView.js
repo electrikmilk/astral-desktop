@@ -11,7 +11,7 @@ export default new View((view, controller) => {
 
     return html('div', {},
         html('h3', {className: 'm-1'}, text('Settings')),
-        html('p', {className: 'm-1'}, text('Settings apply on refresh.')),
+        html('p', {className: 'm-1'}, text('Some settings apply on refresh.')),
         html('div', {className: 'surface padded m-1'},
             html('div', {style: {display: 'grid', gridTemplateColumns: '1fr 1fr'}},
                 text('Desktop Colors'),
