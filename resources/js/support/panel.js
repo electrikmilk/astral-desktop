@@ -125,7 +125,7 @@ export class Panel {
     init() {
         this.initTitleBar();
 
-        this.window.append(html('div', {className: 'panel-frame'},
+        this.window.append(html('div', {className: 'panel-frame surface'},
             html('iframe', {
                 src: this.url,
                 width: 640,

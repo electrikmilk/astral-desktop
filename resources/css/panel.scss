@@ -28,12 +28,7 @@
 .panel .panel-frame {
     margin: 0 .5rem .5rem;
     overflow: hidden;
-    border-radius: var(--rounded-radius);
-    width: 640px;
-    height: 480px;
-    box-shadow: var(--shadow);
-    border: .1rem solid;
-    border-color: var(--surface-border-color)
+    background: none;
 }
 
 .panel-btns {
