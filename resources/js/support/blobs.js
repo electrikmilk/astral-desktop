@@ -25,12 +25,13 @@ addInit('blobs', () => {
 export async function clearBlobs() {
     for (const blob of blobs) {
         await blob.clear();
+        await sleep(0.5);
     }
-    await sleep(0.5);
+    blobs = [];
 }
 
 export function desktopBlobs() {
-    new ColorBlobGroup(desktopColors);
+    new ColorBlobGroup(...desktopColors.value);
 }
 
 export class ColorBlobGroup {
@@ -38,6 +39,7 @@ export class ColorBlobGroup {
     delay = 500;
 
     constructor(...colors) {
+        console.log('new blob group', colors);
         this.add(...colors);
     }
 

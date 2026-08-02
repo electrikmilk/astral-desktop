@@ -21,6 +21,11 @@ const apps = [
         url: route('apps.terminal'),
         icon: '/storage/app-icons/terminal.png',
     },
+    {
+        name: 'Settings',
+        url: route('apps.settings'),
+        icon: '/storage/app-icons/settings.png',
+    },
 ];
 
 function createTimestamp() {
@@ -134,13 +139,9 @@ export default new View((view, controller) => {
         clock.set(createTimestamp());
     }, 1000);
 
-    let initColors = 0;
     desktopColors.model(() => {
-        if (initColors) {
-            clearBlobs();
-            desktopBlobs();
-        }
-        initColors++;
+        clearBlobs();
+        desktopBlobs();
     });
 
     return html('section', {},
