@@ -51,6 +51,7 @@
     cursor: pointer;
     user-select: none;
     box-shadow: var(--shadow);
+    color: white;
 
     @extend .transition-in;
 }
@@ -67,14 +68,12 @@
     background: rgb(168 58 11);
     background: linear-gradient(180deg, rgb(246 168 120) 0%, rgba(168, 58, 11, 0.7) 50%, rgb(246 168 120) 100%);
     border: 1px solid #ec894b;
-    color: rgb(97 25 0);
 }
 
 .panel-close-btn {
     background: rgb(168, 11, 80);
     background: linear-gradient(180deg, rgb(239, 155, 188) 0%, rgba(255, 0, 112, 0.7) 50%, rgb(246, 120, 170) 100%);
     border: 1px solid #ed6fa3;
-    color: rgb(131 0 57 / 0.7);
 }
 
 .panel-indicator {
