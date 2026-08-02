@@ -115,11 +115,11 @@
 }
 
 .appear-in {
-    animation: appearIn forwards ease-in .3s;
+    animation: appearIn forwards ease-in-out .3s;
 }
 
 .disappear-out {
-    animation: disappearOut forwards ease-in .3s;
+    animation: disappearOut forwards ease-out .3s;
 }
 
 .scale-up {
