@@ -139,9 +139,13 @@ export default new View((view, controller) => {
         clock.set(createTimestamp());
     }, 1000);
 
-    desktopColors.model(() => {
-        clearBlobs();
-        desktopBlobs();
+    let initColors = 0;
+    desktopColors.model(async () => {
+        if (initColors) {
+            await clearBlobs();
+            desktopBlobs();
+        }
+        initColors++;
     });
 
     return html('section', {},
