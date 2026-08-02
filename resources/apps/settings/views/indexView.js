@@ -4,14 +4,8 @@ import {html, model, text} from '../../../js/support/render.js';
 import desktopColors from '../../../js/stores/desktopColors.js';
 
 export default new View((view, controller) => {
-    new ColorBlobGroup(
-        '#ffcf39',
-        '#198af3',
-    );
-
     return html('div', {},
-        html('h3', {className: 'm-1'}, text('Settings')),
-        html('p', {className: 'm-1'}, text('Some settings apply on refresh.')),
+        html('p', {className: 'm-1 opacity-half'}, text('Some settings apply on refresh.')),
         html('div', {className: 'surface padded m-1'},
             html('div', {style: {display: 'grid', gridTemplateColumns: '1fr 1fr'}},
                 text('Desktop Colors'),
