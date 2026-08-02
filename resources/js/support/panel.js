@@ -137,6 +137,8 @@ export class Panel {
             }),
         ));
         this.isOpen.set(true);
+
+        this.open();
     }
 
 
@@ -145,6 +147,8 @@ export class Panel {
         this.window.classList.remove('disappear-out');
         this.isOpen.set(true);
         this.isMini.set(false);
+
+        panels.activate(this);
     }
 
     minimize() {

@@ -1,4 +1,4 @@
-import {Panel} from '../support/panel.js';
+import {Panel, panels} from '../support/panel.js';
 import {html, text} from '../support/render.js';
 
 export class DialogPanel extends Panel {
@@ -66,5 +66,7 @@ export class DialogPanel extends Panel {
                 okButton,
             ) : html('div', {style: {display: 'grid', gridTemplateColumns: '1fr', gap: '1rem'}}, okButton),
         ));
+
+        super.open();
     }
 }
