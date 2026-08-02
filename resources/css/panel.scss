@@ -80,6 +80,7 @@
 }
 
 .panel-indicator {
+    user-select: none;
     position: absolute;
     margin-left: 1.5rem;
     line-height: 0;
