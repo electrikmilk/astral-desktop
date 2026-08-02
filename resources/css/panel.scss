@@ -7,6 +7,12 @@
     transform: scale(0.5);
     z-index: 0;
 
+    &:not(.active) {
+        .panel-btn {
+            filter: grayscale(100%);
+        }
+    }
+
     &:active {
         transition: none !important;
     }
