@@ -150,12 +150,12 @@ export default new View((view, controller) => {
 
     return html('section', {},
         html('div', {
-                className: 'surface padded',
+                className: 'surface padded top-bar',
                 style: 'border-radius: 0',
             },
             homeButton,
             renderComponent(popupList),
-            model(clock, (timestamp) => html('div', {style: 'float: right'}, text(timestamp))),
+            model(clock, (timestamp) => html('div', text(timestamp))),
         ),
         html('div', {className: 'surface padded m-1', style: 'position:fixed;bottom:0;left:0;right:0'},
             ...appList,
