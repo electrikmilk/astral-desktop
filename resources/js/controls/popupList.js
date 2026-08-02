@@ -62,7 +62,7 @@ export class PopupList extends Component {
                                     this.close();
                                 },
                             },
-                            text(option.label),
+                            option.hasOwnProperty('template') ? option.template() : text(option.label),
                         ));
                     }
 

@@ -40,6 +40,70 @@ function createTimestamp() {
     return [now.toDateString(), timeUnits.join(':')].join(' ');
 }
 
+const isFullscreen = new Store(false);
+
+const mainMenu = new PopupList([
+    {
+        label: 'Refresh',
+        value: 'refresh',
+        onclick: () => {
+            if (panels.anyPanels()) {
+                (new DialogPanel({
+                    title: 'Windows are open!',
+                    text: 'Cannot refresh while windows are open.',
+                    warning: true,
+                    okLabel: 'Close Open Windows',
+                    ok: (dialog) => {
+                        dialog.close();
+                        panels.closeAll();
+                        refresh();
+                    },
+                })).open();
+            } else {
+                refresh();
+            }
+        },
+    },
+    {
+        template: () => model(isFullscreen, () => text(isFullscreen.value ? 'Exit Fullscreen' : 'Enter Fullscreen')),
+        value: 'fullscreen',
+        onclick: () => {
+            const doc = document.documentElement;
+            if (document.fullscreenElement === doc) {
+                document.exitFullscreen();
+                isFullscreen.set(false);
+                return;
+            }
+
+            if (doc.requestFullscreen) {
+                doc.requestFullscreen();
+            } else if (doc.webkitRequestFullscreen) {
+                doc.webkitRequestFullscreen();
+            } else if (doc.msRequestFullscreen) {
+                doc.msRequestFullscreen();
+            }
+
+            isFullscreen.set(true);
+        },
+    },
+    {
+        label: 'Exit',
+        value: 'exit',
+        onclick: () => {
+            (new DialogPanel({
+                title: 'Exit Desktop',
+                text: 'Are you sure you want to exit the desktop?',
+                warning: true,
+                ok: (dialog) => {
+                    dialog.close();
+                    clearBlobs();
+                    controller.load(startView);
+                },
+            })).open();
+        },
+    },
+]);
+
 export default new View((view, controller) => {
     let appList = [];
     for (const app of apps) {
@@ -74,50 +138,10 @@ export default new View((view, controller) => {
         window.location.reload();
     }
 
-    const popupList = new PopupList([
-        {
-            label: 'Refresh',
-            value: 'refresh',
-            onclick: () => {
-                if (panels.anyPanels()) {
-                    (new DialogPanel({
-                        title: 'Windows are open!',
-                        text: 'Cannot refresh while windows are open.',
-                        warning: true,
-                        okLabel: 'Close Open Windows',
-                        ok: (dialog) => {
-                            dialog.close();
-                            panels.closeAll();
-                            refresh();
-                        },
-                    })).open();
-                } else {
-                    refresh();
-                }
-            },
-        },
-        {
-            label: 'Exit',
-            value: 'exit',
-            onclick: () => {
-                (new DialogPanel({
-                    title: 'Exit Desktop',
-                    text: 'Are you sure you want to exit the desktop?',
-                    warning: true,
-                    ok: (dialog) => {
-                        dialog.close();
-                        clearBlobs();
-                        controller.load(startView);
-                    },
-                })).open();
-            },
-        },
-    ]);
-
     const homeButton = html('a', {
             className: 'raises',
             onclick: () => {
-                popupList.toggle();
+                mainMenu.toggle();
             },
         },
         model(darkMode, (darkModeOn) => html('img', {
@@ -126,7 +150,7 @@ export default new View((view, controller) => {
         })),
     );
 
-    popupList.visible.model((visible) => {
+    mainMenu.visible.model((visible) => {
         if (visible) {
             homeButton.classList.add('surface');
         } else {
@@ -155,7 +179,7 @@ export default new View((view, controller) => {
             },
             html('div', {},
                 homeButton,
-                renderComponent(popupList),
+                renderComponent(mainMenu),
             ),
             model(clock, (timestamp) => html('div', {}, text(timestamp))),
         ),
