@@ -76,26 +76,31 @@ export default new View((view, controller) => {
         window.location.reload();
     }
 
+    function desktopExitBlock(callback) {
+        if (panels.anyPanels()) {
+            (new DialogPanel({
+                title: 'Windows are open!',
+                text: 'Are you sure? Windows are still open.',
+                warning: true,
+                okLabel: 'Close Open Windows',
+                ok: (dialog) => {
+                    dialog.close();
+                    panels.closeAll();
+                    callback();
+                },
+            })).open();
+            return;
+        }
+
+        callback();
+    }
+
     const mainMenu = new PopupList([
         {
             label: 'Refresh',
             value: 'refresh',
             onclick: () => {
-                if (panels.anyPanels()) {
-                    (new DialogPanel({
-                        title: 'Windows are open!',
-                        text: 'Cannot refresh while windows are open.',
-                        warning: true,
-                        okLabel: 'Close Open Windows',
-                        ok: (dialog) => {
-                            dialog.close();
-                            panels.closeAll();
-                            refresh();
-                        },
-                    })).open();
-                } else {
-                    refresh();
-                }
+                desktopExitBlock(() => refresh());
             },
         },
         {
@@ -124,16 +129,18 @@ export default new View((view, controller) => {
             label: 'Exit',
             value: 'exit',
             onclick: () => {
-                (new DialogPanel({
-                    title: 'Exit Desktop',
-                    text: 'Are you sure you want to exit the desktop?',
-                    warning: true,
-                    ok: (dialog) => {
-                        dialog.close();
-                        clearBlobs();
-                        controller.load(startView);
-                    },
-                })).open();
+                desktopExitBlock(() => {
+                    (new DialogPanel({
+                        title: 'Exit Desktop',
+                        text: 'Are you sure you want to exit the desktop?',
+                        warning: true,
+                        ok: (dialog) => {
+                            dialog.close();
+                            clearBlobs();
+                            controller.load(startView);
+                        },
+                    })).open();
+                });
             },
         },
     ]);
