@@ -177,6 +177,9 @@ async function processInput() {
             for (let line of response.data.output) {
                 output.push(line);
             }
+            if (response.data.status !== 0) {
+                output.push('exited with code ' + response.data.status);
+            }
         }
 
         pushOutput(...output, '');
