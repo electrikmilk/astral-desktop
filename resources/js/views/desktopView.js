@@ -1,5 +1,5 @@
 import {View} from '../support/views.js';
-import {Panel, windows} from '../support/panel.js';
+import {Panel, panels} from '../support/panel.js';
 
 import {html, model, text} from '../support/render.js';
 
@@ -49,14 +49,14 @@ export default new View((view, controller) => {
         appList.push(model(appMini, (minimized) => html('a', {
                 className: minimized ? 'raises surface' : 'raises',
                 onclick: () => {
-                    const openWindow = windows.find((w) => w.title === app.name);
-                    if (!openWindow) {
+                    const openPanel = panels.has(app.name);
+                    if (!openPanel) {
                         const window = new Panel(app.name, app.url, app.icon, appOpen, appMini).withMinimizeButton();
                         window.init();
                         return;
                     }
 
-                    openWindow.open();
+                    openPanel.open();
                 },
             },
             html('img', {src: app.icon, width: 64}),
@@ -79,7 +79,7 @@ export default new View((view, controller) => {
             label: 'Refresh',
             value: 'refresh',
             onclick: () => {
-                if (windows.length !== 0) {
+                if (panels.anyPanels()) {
                     (new DialogPanel({
                         title: 'Windows are open!',
                         text: 'Cannot refresh while windows are open.',
@@ -87,7 +87,7 @@ export default new View((view, controller) => {
                         okLabel: 'Close Open Windows',
                         ok: (dialog) => {
                             dialog.close();
-                            windows.forEach(window => window.close());
+                            panels.closeAll();
                             refresh();
                         },
                     })).open();

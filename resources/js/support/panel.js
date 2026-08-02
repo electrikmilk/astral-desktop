@@ -3,7 +3,6 @@ import {html, text} from './render.js';
 import {Store} from './store.js';
 
 let container;
-export let windows = [];
 
 addInit('panels', () => {
     if (!container) {
@@ -11,6 +10,37 @@ addInit('panels', () => {
         document.body.appendChild(container);
     }
 });
+
+class PanelManager {
+    panels = [];
+
+    anyPanels() {
+        return this.panels.length !== 0;
+    }
+
+    activate(panel) {
+        this.panels.forEach(p => p.window.classList.remove('active'));
+        this.panels[this.panels.indexOf(panel)].window.classList.add('active');
+    }
+
+    add(panel) {
+        this.panels.push(panel);
+    }
+
+    has(title) {
+        return this.panels.find(p => p.title === title);
+    }
+
+    remove(panel) {
+        this.panels.splice(this.panels.indexOf(panel), 1);
+    }
+
+    closeAll() {
+        this.panels.forEach(p => p.close());
+    }
+}
+
+export const panels = new PanelManager();
 
 export class Panel {
     window;
@@ -27,7 +57,10 @@ export class Panel {
         this.title = title;
         this.icon = icon;
         this.url = url;
-        this.window = html('div', {className: 'panel'});
+        this.window = html('div', {
+            className: 'panel',
+            onclick: () => panels.activate(this),
+        });
         if (isOpenModel) {
             this.isOpen = isOpenModel;
         }
@@ -36,7 +69,7 @@ export class Panel {
         }
 
         container.appendChild(this.window);
-        windows.push(this);
+        panels.add(this);
 
         $(this.window).draggable().selectable().resizable();
     }
@@ -91,12 +124,16 @@ export class Panel {
 
     init() {
         this.initTitleBar();
+
         this.window.append(html('div', {className: 'panel-frame'},
             html('iframe', {
                 src: this.url,
                 width: 640,
                 height: 480,
                 frameBorder: '0',
+                onload: (event) => {
+                    event.target.contentWindow.document.body.onclick = () => panels.activate(this);
+                },
             }),
         ));
         this.isOpen.set(true);
@@ -121,7 +158,7 @@ export class Panel {
         this.window.classList.add('fade-out');
         setTimeout(() => {
             this.window.remove();
-            windows.splice(windows.indexOf(this), 1);
+            panels.remove(this);
             delete this;
         }, 400);
     }
