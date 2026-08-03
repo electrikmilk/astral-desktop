@@ -224,7 +224,7 @@
 
 @keyframes appearIn {
     from {
-        transform: scale(0.5) translateY(150%);
+        transform: scale(0.5) translateY(200%);
         opacity: 0;
     }
     to {
@@ -239,7 +239,7 @@
         opacity: 1;
     }
     to {
-        transform: scale(0.5) translateY(150%);
+        transform: scale(0.5) translateY(200%);
         opacity: 0;
     }
 }
