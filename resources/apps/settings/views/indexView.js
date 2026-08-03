@@ -1,5 +1,4 @@
 import {View} from '../../../js/support/views.js';
-import {ColorBlobGroup} from '../../../js/support/blobs.js';
 import {html, model, text} from '../../../js/support/render.js';
 import desktopColors from '../../../js/stores/desktopColors.js';
 
