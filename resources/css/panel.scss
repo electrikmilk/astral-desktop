@@ -4,7 +4,6 @@
     position: fixed;
     opacity: 0;
     box-shadow: var(--window-shadow);
-    transform: scale(0.5);
     z-index: 0;
 
     &:not(.active) {
@@ -21,7 +20,7 @@
         z-index: 1;
     }
 
-    @extend .surface, .appear-in
+    @extend .surface, .appear
 }
 
 .panel .panel-title {

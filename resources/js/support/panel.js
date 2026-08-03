@@ -145,6 +145,9 @@ export class Panel {
     open() {
         this.window.classList.remove('fade-out');
         this.window.classList.remove('disappear-out');
+        if (this.isMini.value) {
+            this.window.classList.add('appear-in');
+        }
         this.isOpen.set(true);
         this.isMini.set(false);
 
