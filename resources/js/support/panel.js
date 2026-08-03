@@ -71,7 +71,21 @@ export class Panel {
         container.appendChild(this.window);
         panels.add(this);
 
-        $(this.window).draggable().selectable().resizable();
+        $('.panels-container').selectable();
+        $(this.window).draggable({
+            handle: '.panel-bar',
+            containment: 'parent',
+        });
+    }
+
+    resizeable() {
+        $(this.window).resizable({
+            containment: '.panels-container',
+            minHeight: 400,
+            minWidth: 500,
+            handles: 'nw,ne,sw,se,n,e,s,w',
+        });
+        return this;
     }
 
     withMinimizeButton() {
@@ -85,7 +99,7 @@ export class Panel {
     }
 
     initTitleBar() {
-        this.titleBar = html('div', {className: 'panel-title font-demi'},
+        this.titleBar = html('div', {className: 'panel-bar font-demi'},
             html('div', {
                     className: 'flex-center',
                     style: 'gap: 0 .5rem',
@@ -128,8 +142,6 @@ export class Panel {
         this.window.append(html('div', {className: 'panel-frame surface'},
             html('iframe', {
                 src: this.url,
-                width: 640,
-                height: 480,
                 frameBorder: '0',
                 onload: (event) => {
                     event.target.contentWindow.document.body.onclick = () => panels.activate(this);

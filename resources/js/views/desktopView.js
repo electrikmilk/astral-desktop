@@ -1,32 +1,21 @@
-import {View} from '../support/views.js';
-import {Panel, panels} from '../support/panel.js';
-
-import {html, model, text} from '../support/render.js';
-
 import astralIcon from '../../assets/astral_icon.svg';
 import astralIconLight from '../../assets/astral_icon_light.svg';
-import darkMode from '../stores/darkMode.js';
-import {PopupList} from '../controls/popupList.js';
 import start from '../../assets/start.wav';
-import startView from './startView.js';
+
 import {renderComponent} from '../component.js';
 import {clearBlobs, desktopBlobs} from '../support/blobs.js';
 import {Store} from '../support/store.js';
 import {DialogPanel} from '../controls/dialog.js';
+import {PopupList} from '../controls/popupList.js';
+
+import darkMode from '../stores/darkMode.js';
 import desktopColors from '../stores/desktopColors.js';
 
-const apps = [
-    {
-        name: 'Terminal',
-        url: route('apps.terminal'),
-        icon: '/storage/app-icons/terminal.png',
-    },
-    {
-        name: 'Settings',
-        url: route('apps.settings'),
-        icon: '/storage/app-icons/settings.png',
-    },
-];
+import {View} from '../support/views.js';
+import {Panel, panels} from '../support/panel.js';
+import {html, model, text} from '../support/render.js';
+import startView from './startView.js';
+import {apps} from '../applications.js';
 
 function createTimestamp() {
     const now = new Date();
@@ -47,13 +36,20 @@ export default new View((view, controller) => {
     for (const app of apps) {
         const appOpen = new Store(false);
         const appMini = new Store(false);
+        const icon = '/storage/app-icons/' + app.icon;
 
         appList.push(model(appMini, (minimized) => html('a', {
                 className: minimized ? 'raises surface' : 'raises',
                 onclick: () => {
                     const openPanel = panels.has(app.name);
                     if (!openPanel) {
-                        const window = new Panel(app.name, app.url, app.icon, appOpen, appMini).withMinimizeButton();
+                        const window = new Panel(app.name, app.url, icon, appOpen, appMini)
+                            .withMinimizeButton();
+
+                        if (app.resizeable) {
+                            window.resizeable();
+                        }
+
                         window.init();
                         return;
                     }
@@ -61,7 +57,7 @@ export default new View((view, controller) => {
                     openPanel.open();
                 },
             },
-            html('img', {src: app.icon, width: 64}),
+            html('img', {src: icon, width: 64}),
             model(appOpen, (open) => html('div', {className: 'panel-indicator'}, open ? text('•') : text(''))),
         )));
     }
@@ -190,7 +186,7 @@ export default new View((view, controller) => {
             ),
             model(clock, (timestamp) => html('div', {}, text(timestamp))),
         ),
-        html('div', {className: 'surface padded m-1', style: 'position:fixed;bottom:0;left:0;right:0'},
+        html('div', {className: 'surface padded m-1 app-bar'},
             ...appList,
         ),
     );

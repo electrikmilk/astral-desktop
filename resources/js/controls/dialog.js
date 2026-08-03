@@ -1,4 +1,4 @@
-import {Panel, panels} from '../support/panel.js';
+import {Panel} from '../support/panel.js';
 import {html, text} from '../support/render.js';
 
 export class DialogPanel extends Panel {
@@ -56,6 +56,8 @@ export class DialogPanel extends Panel {
             },
             text(this.cancelLabel),
         );
+
+        this.window.classList.add(...['centered', 'dialog']);
 
         this.window.append(html('div', {className: 'text-center', style: {padding: '1rem'}},
             html('img', {src: this.icon, alt: 'Alert', width: 128, height: 128}),

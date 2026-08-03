@@ -18,6 +18,7 @@ use App\Http\Controllers\RemoteController;
 Route::view('/', 'index');
 Route::view('/terminal', 'applications.terminal')->name('apps.terminal');
 Route::view('/settings', 'applications.settings')->name('apps.settings');
+Route::view('/files', 'applications.files')->name('apps.files');
 
 Route::get('/info', [RemoteController::class, 'info'])->name('remote.info');
 

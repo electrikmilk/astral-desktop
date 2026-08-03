@@ -147,3 +147,10 @@ button.danger {
     align-items: center;
     z-index: 99;
 }
+
+.app-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0
+}
