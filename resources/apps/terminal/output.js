@@ -1,6 +1,7 @@
-import {CANVAS_HEIGHT, CANVAS_WIDTH, MARGIN_X} from './index.js';
+import {MARGIN_X} from './index.js';
 import {INPUT_Y} from './input.js';
 import {PicassoCanvas} from './canvas.js';
+import beepSound from './beep.wav';
 
 export let output = [];
 export let outputIndex = 0;
@@ -9,8 +10,6 @@ export function clearOutput() {
     outputIndex = 0;
     output = [];
 }
-
-import beepSound from './beep.wav';
 
 export let blink = false;
 
