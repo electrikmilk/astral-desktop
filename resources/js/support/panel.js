@@ -1,6 +1,7 @@
 import {addInit} from '../init.js';
 import {html, text} from './render.js';
 import {Store} from './store.js';
+import {faIcon} from '../faIcon.js';
 
 let container;
 
@@ -113,22 +114,24 @@ export class Panel {
 
         if (this.minimizeButton) {
             titleBarButtons.append(html('div', {
-                className: 'panel-btn panel-mini-btn',
-                innerHTML: '&minus;',
-                onclick: () => {
-                    this.minimize();
+                    className: 'panel-btn panel-mini-btn',
+                    onclick: () => {
+                        this.minimize();
+                    },
                 },
-            }));
+                faIcon('minus'),
+            ));
         }
 
         if (this.closeButton) {
             titleBarButtons.append(html('div', {
-                className: 'panel-btn panel-close-btn',
-                innerHTML: '&times;',
-                onclick: () => {
-                    this.close();
+                    className: 'panel-btn panel-close-btn',
+                    onclick: () => {
+                        this.close();
+                    },
                 },
-            }));
+                faIcon('xmark'),
+            ));
         }
 
         this.titleBar.append(titleBarButtons);

@@ -5,7 +5,7 @@ import {faIcon} from '../faIcon.js';
 export default new View(() => {
     return html('div', {className: 'fixed-center shake', style: 'color: #fafafa'},
         html('div', {},
-            html('div', {className: 'text-xl'}, faIcon('fa-solid fa-triangle-exclamation')),
+            html('div', {className: 'text-xl'}, faIcon('triangle-exclamation')),
             html('div', {},
                 html('h3', {}, text('Remote health check failed')),
                 html('p', {}, text('Unable to connect to remote host!')),
