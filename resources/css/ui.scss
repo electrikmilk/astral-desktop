@@ -127,7 +127,7 @@ button.danger {
     min-width: 12rem;
     max-height: 50rem;
     padding: 1rem .3rem;
-    z-index: 999;
+    z-index: 990;
 
     @extend .surface, .scrollable-y
 }
@@ -145,7 +145,8 @@ button.danger {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 99;
+    position: relative;
+    z-index: 999;
 }
 
 .app-bar {
