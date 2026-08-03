@@ -101,7 +101,7 @@ export class Panel {
     initTitleBar() {
         this.titleBar = html('div', {className: 'panel-bar font-demi'},
             html('div', {
-                    className: 'flex-center',
+                    className: 'flex-center panel-title',
                     style: 'gap: 0 .5rem',
                 },
                 html('img', {src: this.icon, width: 32}),

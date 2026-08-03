@@ -22,8 +22,9 @@
     padding: 0 .5rem .5rem;
 
     &:not(.active) {
-        .panel-btn {
+        .panel-title, .panel-btn {
             filter: grayscale(100%);
+            opacity: 0.5;
         }
     }
 
